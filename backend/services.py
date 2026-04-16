@@ -8,7 +8,7 @@ def embeddingFunction(description: str, task_type: str) -> list[float]:
     result = googleClient.models.embed_content(
         model="gemini-embedding-001",
         contents=description,
-        # Limit the size to improve performance
+
         config=types.EmbedContentConfig(output_dimensionality=768, task_type=task_type)
     )
     

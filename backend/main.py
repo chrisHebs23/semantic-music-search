@@ -1,10 +1,18 @@
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI, status
+from fastapi.middleware.cors import CORSMiddleware
 from clients import supabase
 from services import embeddingFunction, insertTrack, getAllTracks, throwHttpError, getMatches
 from models import TrackCreate, TrackResponse
 
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get('/')
 async def root():
